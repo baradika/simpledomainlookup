@@ -15,15 +15,16 @@ A simple and effective Python tool for retrieving domain information and associa
 - `whois` library
 - `requests` library
 
-## Installation
-
-To install the required libraries, run the following command:
-
-```bash
-pip install python-whois requests
-
-```bash
-git clone https://github.com/baradika/simpledomainlookup.git
+## Usage Instructions
+1. Clone this repository to your local system.
+   ```bash
+   git clone https://github.com/baradika/simpledomainlookup.git
+2. Install the required dependencies
+   ```bash
+   pip install python-whois requests
+4. Run the script
+   ```bash
+   python3 simpledomainlookup.py / python3 domainlookup.py
 
 
 
