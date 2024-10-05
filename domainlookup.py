@@ -13,7 +13,6 @@ def domain_lookup(domain):
 
 def get_ip_address(domain):
     try:
-        # Menghapus protokol dari domain jika ada
         if domain.startswith("http://"):
             domain = domain[7:]
         elif domain.startswith("https://"):
@@ -26,7 +25,6 @@ def get_ip_address(domain):
 
 def get_ip_location(ip_address):
     try:
-        # Menggunakan API ip-api.com untuk mendapatkan lokasi IP
         response = requests.get(f"http://ip-api.com/json/{ip_address}")
         location_data = response.json()
         
@@ -46,10 +44,9 @@ def get_ip_location(ip_address):
 
 def format_date(date):
     if isinstance(date, list):
-        # Jika tanggal merupakan list, ambil tanggal pertama
         date = date[0] if date else None
     if date:
-        return date.strftime("%Y-%m-%dT%H:%M:%SZ")  # Format ISO
+        return date.strftime("%Y-%m-%dT%H:%M:%SZ")
     return "Tidak ada informasi tanggal."
 
 def display_info(info, ip_address, ip_location):
@@ -70,19 +67,16 @@ def display_info(info, ip_address, ip_location):
         print(f"Registrant Country: {info.country or 'Tidak ada'}")
         print(f"Registrant Email: {', '.join(info.emails) if info.emails else 'Tidak ada'}")
         
-        # Menampilkan informasi admin jika ada
         if info.admin:
             print(f"\nAdmin Name: {info.admin or 'Tidak ada'}")
             print(f"Admin Organization: {info.admin_org or 'Tidak ada'}")
         
-        # Menampilkan informasi tech jika ada
         if info.tech:
             print(f"\nTech Name: {info.tech or 'Tidak ada'}")
             print(f"Tech Organization: {info.tech_org or 'Tidak ada'}")
         
         print(f"\nName Server: {', '.join(info.name_servers) if info.name_servers else 'Tidak ada'}")
         
-        # Menampilkan informasi lokasi IP
         if isinstance(ip_location, dict):
             print(f"\nIP Address: {ip_address}")
             print(f"IP Location: {ip_location['city']}, {ip_location['region']}, {ip_location['country']} (ZIP: {ip_location['zip']})")
@@ -98,7 +92,6 @@ if __name__ == "__main__":
         if domain.lower() == 'exit':
             print("Terima kasih telah menggunakan tools ini.")
             break
-        # Memanggil fungsi untuk melakukan pencarian informasi domain dan IP address
         info = domain_lookup(domain)
         ip_address = get_ip_address(domain)
         ip_location = get_ip_location(ip_address)
